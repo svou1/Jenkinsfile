@@ -20,7 +20,6 @@ pipeline {
             steps {
                 echo 'Deploying the pipeline'
                 sh 'touch deploy.txt'
-                sh 'mv deploy.txt '/var/lib/jenkins/workspace'
             }
         }
     }

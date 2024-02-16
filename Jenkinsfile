@@ -8,7 +8,8 @@ pipeline {
                 sh 'ls'
                 bash 'cleanup.sh'
                 echo 'Cleanup finished'
-                
+                }
+        } 
         stage('Build') {
             steps {
                 echo 'Building a pipeline'
@@ -34,5 +35,4 @@ pipeline {
         }
     }
 }
-    }
-}
+

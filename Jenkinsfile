@@ -2,37 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('cleanup'){
-            steps{
-                echo 'Cleaning up'
-                sh 'ls'
-                bash 'cleanup.sh'
-                echo 'Cleanup finished'
+       stage('Build Docker Image') {
+           steps {
+                //Build the Docker image
+               docker.build('dockerimage', '-f Dockerfile.txt . '
                 }
-        } 
+                            }
+                            }
+                            }
         stage('Build') {
             steps {
-                echo 'Building a pipeline'
-                sh 'ls'
-            }
-        }
+                echo 'Buid Docker Image'{
 
-        stage('Test') {
-            steps {
-                echo 'Testing'
-                sh 'pwd'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the pipeline'
-                //Clone the GitLab repository
-                git branch: 'main', url: 'https://gitlab.com/Reece-Elder/dockerfileexercise.git'
-                sh 'touch deploy.txt'
-                sh 'mv deploy.txt ~/jenkins'
-            }
+                //Run the Docker container
+                docker.image('dockerimage').run('-p 8080:80, '--name container')
+                    }    
+                }        
+            }    
         }
     }
-}
+
 

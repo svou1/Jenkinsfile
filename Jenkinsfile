@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('cleanup'){
+            steps{
+                echo 'Cleaning up'
+                sh 'ls'
+                bash 'cleanup.sh'
+                echo 'Cleanup finished'
+                
         stage('Build') {
             steps {
                 echo 'Building a pipeline'

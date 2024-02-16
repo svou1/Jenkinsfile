@@ -2,24 +2,24 @@ pipeline {
     agent any
 
     stages {
-       stage('Build Docker Image') {
+        stage('cleanup'){
+            steps{
+                echo 'Cleaning up'
+                sh 'ls'
+                bash 'cleanup.sh'
+                echo 'Cleanup finished'
+            }
+        }
+    }
+        stage('Build Flask App') {
            steps {
                 //Build the Docker image
-               docker.build('dockerimage', '-f Dockerfile.txt . '
+               sh "docker rn -f $(docker ps -aq) || true"
+               sh "docker create network flasknetwork || true"
+               sh "docker build -t flask-app ."
+               sh "docker build -t nginx1 -f Dockerfile.nginx ."  
                 }
-                            }
-                            }
-                            }
-        stage('Build') {
-            steps {
-                echo 'Buid Docker Image'{
-
-                //Run the Docker container
-                docker.image('dockerimage').run('-p 8080:80, '--name container')
-                    }    
-                }        
-            }    
-        }
+            }
     }
 
 

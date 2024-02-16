@@ -22,7 +22,7 @@ pipeline {
                 //Clone the GitLab repository
                 git branch: 'main', url: 'https://gitlab.com/Reece-Elder/dockerfileexercise.git'
                 sh 'touch deploy.txt'
-                sh 'mv deploy.txt ~/jenkins
+                sh 'mv deploy.txt ~/jenkins'
             }
         }
     }
